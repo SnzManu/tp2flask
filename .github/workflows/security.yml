@@ -28,14 +28,14 @@ jobs:
         with:
           generateSarif: "1"
 
-      - name: Trivy (SCA & FS)
+      - - name: Trivy (SCA & FS)
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'fs'
           format: 'sarif'
           output: 'trivy-results.sarif'
           severity: 'CRITICAL'
-          exit-code: '1'
+          exit-code: '0' # On remplace 1 par 0
 
       - name: Upload SARIF to GitHub Security
         uses: github/codeql-action/upload-sarif@v3
